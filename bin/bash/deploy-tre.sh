@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -e
 
 # Install dependencies & configure AWS credentials before executing script; see Readme.md for instructions

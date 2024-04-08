@@ -12,7 +12,12 @@
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [
             awscli2
+            aws-sam-cli
             aws-sso-cli
+            (python39.withPackages(ps: with ps; [
+              pip
+            ]))
+            go
           ];
         };
       }
