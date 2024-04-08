@@ -42,11 +42,6 @@ Parameters:
     Description: Determines if SSL verification will be turned on when the engine calls Service Catalog. The default should be used except in cases when SSL verification is not desired, such as in certain testing cases.
     Type: String
 
-  TerraformCliVersion:
-    Default: 1.2.8
-    Description: The Terraform CLI version to install on the EC2 instances
-    Type: String
-
   ServerLatestAmiId:
     Type: 'AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>'
     Default: '/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2'
@@ -606,22 +601,22 @@ Resources:
       AWS::CloudFormation::Init:
         configSets:
           setup:
-            - install_terraform
+            - install_tfenv
             - install_boto3
             - install_terraform_runner
             - create_workspaces_parent_dir
 
-        install_terraform:
+        install_tfenv:
           packages:
             yum:
               yum-utils: [ ]
           commands:
-            add_hashicorp_repo_to_yum:
+            01_install_tfenv:
               command:
-                sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
-            install_terraform_cli_package:
-              command:
-                !Sub sudo yum -y install terraform-${TerraformCliVersion}
+                !Sub
+                  - sudo yum -y install git-core curl-minimal unzip
+                  - git clone --depth=1 https://github.com/tfutils/tfenv.git $HOME/.tfenv
+                  - sudo ln -s $HOME/.tfenv/bin/* /usr/local/bin/
 
         install_boto3:
           commands:
