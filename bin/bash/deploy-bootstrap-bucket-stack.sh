@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -e
 
 BOOTSTRAP_STACK_NAME=Bootstrap-TRE
