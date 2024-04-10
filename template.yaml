@@ -619,7 +619,8 @@ Resources:
             01_install_tfenv:
               command: 'git clone --depth=1 https://github.com/tfutils/tfenv.git /home/ec2-user/.tfenv'
             02_setup_tfenv:
-              command: 'sudo ln -s /home/ec2-user/.tfenv/bin/* /usr/local/bin/'
+              #command: 'sudo ln -s /home/ec2-user/.tfenv/bin/* /usr/local/bin/'
+              command: "echo 'export PATH=\"$HOME/.tfenv/bin:$PATH\"' >> ~/.bash_profile"
 
         install_boto3:
           commands:
