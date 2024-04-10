@@ -610,12 +610,15 @@ Resources:
           packages:
             yum:
               yum-utils: [ ]
+              git: [ ]
+              curl-minimal: [ ]
+              unzip: [ ]
           commands:
-            01_install_tfenv_dependencies:
-              command: 'sudo yum -y install git-core curl-minimal unzip'
-            02_install_tfenv:
+            #01_install_tfenv_dependencies:
+            #  command: 'sudo yum -y install git curl-minimal unzip'
+            01_install_tfenv:
               command: 'git clone --depth=1 https://github.com/tfutils/tfenv.git /home/ec2-user/.tfenv'
-            03_setup_tfenv:
+            02_setup_tfenv:
               command: 'sudo ln -s /home/ec2-user/.tfenv/bin/* /usr/local/bin/'
 
         install_boto3:
