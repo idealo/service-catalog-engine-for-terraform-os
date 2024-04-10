@@ -1,3 +1,5 @@
+![](application-composer-SAM-TRE.png)
+
 # AWS Service Catalog Engine for Terraform
 
 The AWS Service Catalog Terraform Reference Engine (TRE) provides an example for you to configure and install a Terraform engine in your AWS Service Catalog administrator account. With the engine installed into your account, you can use Service Catalog as a single tool to organize, govern, and distribute your Terraform configurations within AWS.
