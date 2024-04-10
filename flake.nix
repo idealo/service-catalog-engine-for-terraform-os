@@ -14,7 +14,7 @@
             awscli2
             aws-sam-cli
             aws-sso-cli
-            (python39.withPackages(ps: with ps; [
+            (python312.withPackages(ps: with ps; [
               pip
             ]))
             go
