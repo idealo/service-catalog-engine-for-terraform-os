@@ -620,7 +620,9 @@ Resources:
               command: 'git clone --depth=1 https://github.com/tfutils/tfenv.git /home/ec2-user/.tfenv'
             02_setup_tfenv:
               #command: 'sudo ln -s /home/ec2-user/.tfenv/bin/* /usr/local/bin/'
-              command: "echo 'export PATH=\"$HOME/.tfenv/bin:$PATH\"' >> ~/.bash_profile"
+              command: "echo 'export PATH=\"$HOME/.tfenv/bin:$PATH\"' >> /home/ec2-user/.bash_profile"
+            03_change_directory_owner:
+              command: 'chown -R ec2-user:ec2-user /home/ec2-user/{.tfenv,.bash_profile}'
 
         install_boto3:
           commands:
