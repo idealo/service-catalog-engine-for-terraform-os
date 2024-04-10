@@ -14,7 +14,6 @@ from terraform_runner.WorkspaceManager import WorkspaceManager
 # Constants
 APPLY_ACTION = 'apply'
 DESTROY_ACTION = 'destroy'
-AWS_DEFAULT_REGION = 'AWS_DEFAULT_REGION'
 
 
 def __parse_arguments():
@@ -35,7 +34,7 @@ def __parse_arguments():
     return parser.parse_args()
 
 def __set_environment_variables(args):
-    os.environ[AWS_DEFAULT_REGION] = args.region
+    os.environ['AWS_DEFAULT_REGION'] = args.region
 
 def __setup_workspace(workspace_manager):
     workspace_manager.setup_workspace_directory()
