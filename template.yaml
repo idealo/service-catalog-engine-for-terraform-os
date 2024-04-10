@@ -859,7 +859,7 @@ Resources:
       PackageType: Zip
       CodeUri: lambda-functions/provisioning-operations-handler
       Handler: provisioning_operations_handler.handle_sqs_records
-      Runtime: python3.9
+      Runtime: python3.12
       Timeout: 30
       MemorySize: 256
       Architectures:
@@ -959,7 +959,7 @@ Resources:
       PackageType: Zip
       CodeUri: lambda-functions/provisioning-operations-handler
       Handler: provisioning_operations_handler.handle_sqs_records
-      Runtime: python3.9
+      Runtime: python3.12
       Timeout: 30
       MemorySize: 256
       Architectures:
@@ -1346,7 +1346,7 @@ Resources:
       PackageType: Zip
       CodeUri: lambda-functions/state_machine_lambdas
       Handler: select_worker_host.select
-      Runtime: python3.9
+      Runtime: python3.12
       Timeout: 60
       Architectures:
         - x86_64
@@ -1405,7 +1405,7 @@ Resources:
       PackageType: Zip
       CodeUri: lambda-functions/state_machine_lambdas
       Handler: get_state_file_outputs.parse
-      Runtime: python3.9
+      Runtime: python3.12
       Timeout: 60
       Environment:
         Variables:
@@ -1477,7 +1477,7 @@ Resources:
       PackageType: Zip
       CodeUri: lambda-functions/state_machine_lambdas
       Handler: poll_command_invocation.poll
-      Runtime: python3.9
+      Runtime: python3.12
       Timeout: 60
       Architectures:
         - x86_64
@@ -1535,7 +1535,7 @@ Resources:
             - - !Ref PrivateSubnet1
         SecurityGroupIds:
           - !GetAtt VPC.DefaultSecurityGroup
-      Runtime: python3.9
+      Runtime: python3.12
       Timeout: 60
       Environment:
         Variables:
@@ -1596,7 +1596,7 @@ Resources:
             - - !Ref PrivateSubnet1
         SecurityGroupIds:
           - !GetAtt VPC.DefaultSecurityGroup
-      Runtime: python3.9
+      Runtime: python3.12
       Environment:
         Variables:
           SERVICE_CATALOG_ENDPOINT: !Ref ServiceCatalogEndpoint
@@ -1669,7 +1669,7 @@ Resources:
             - - !Ref PrivateSubnet1
         SecurityGroupIds:
           - !GetAtt VPC.DefaultSecurityGroup
-      Runtime: python3.9
+      Runtime: python3.12
       Environment:
         Variables:
           SERVICE_CATALOG_ENDPOINT: !Ref ServiceCatalogEndpoint
@@ -1742,7 +1742,7 @@ Resources:
             - - !Ref PrivateSubnet1
         SecurityGroupIds:
           - !GetAtt VPC.DefaultSecurityGroup
-      Runtime: python3.9
+      Runtime: python3.12
       Environment:
         Variables:
           STATE_BUCKET_NAME: !Ref TerraformStateBucket
@@ -1776,7 +1776,7 @@ Resources:
             - - !Ref PrivateSubnet1
         SecurityGroupIds:
           - !GetAtt VPC.DefaultSecurityGroup
-      Runtime: python3.9
+      Runtime: python3.12
       Environment:
         Variables:
           SERVICE_CATALOG_ENDPOINT: !Ref ServiceCatalogEndpoint
