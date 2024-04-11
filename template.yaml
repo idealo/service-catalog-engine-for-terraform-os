@@ -42,6 +42,16 @@ Parameters:
     Description: Determines if SSL verification will be turned on when the engine calls Service Catalog. The default should be used except in cases when SSL verification is not desired, such as in certain testing cases.
     Type: String
 
+  TerraformCliVersion:
+    Default: 1.8.0
+    Description: The Terraform CLI version to install on the EC2 instances
+    Type: String
+
+  TfenvVersion:
+    Default: 3.0.0
+    Description: The Terraform version manager version to install on the EC2 instances
+    Type: String
+
   ServerLatestAmiId:
     Type: 'AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>'
     Default: '/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2'
@@ -614,15 +624,19 @@ Resources:
               curl: [ ]
               unzip: [ ]
           commands:
-            #01_install_tfenv_dependencies:
-            #  command: 'sudo yum -y install git curl unzip'
             01_install_tfenv:
-              command: 'git clone --depth=1 https://github.com/tfutils/tfenv.git /home/ec2-user/.tfenv'
+              command: !Sub 'git clone --depth=1 --branch=v${TfenvVersion} https://github.com/tfutils/tfenv.git /home/ec2-user/.tfenv'
             02_setup_tfenv:
-              #command: 'sudo ln -s /home/ec2-user/.tfenv/bin/* /usr/local/bin/'
               command: "echo 'export PATH=\"$HOME/.tfenv/bin:$PATH\"' >> /home/ec2-user/.bash_profile"
             03_change_directory_owner:
               command: 'chown -R ec2-user:ec2-user /home/ec2-user/{.tfenv,.bash_profile}'
+          files:
+            # Terraform version used if no .terraform-version file found in product tarball
+            "/home/ec2-user/.tfenv/version":
+              content: !Sub "${TerraformCliVersion}"
+              mode: "000644"
+              owner: "ec2-user"
+              group: "ec2-user"
 
         install_boto3:
           commands:
