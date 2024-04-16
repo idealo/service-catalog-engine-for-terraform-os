@@ -48,7 +48,7 @@ def __select_random_instance_id():
         for reservation in page[RESERVATIONS]:
             instances += reservation[INSTANCES]
 
-    if not instances:
+    if len(instances) == 0:
         raise RuntimeError('No usable EC2 instances found')
 
     index = random.randint(0, len(instances) - 1)
