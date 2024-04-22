@@ -628,15 +628,10 @@ Resources:
               command: !Sub 'git clone --depth=1 --branch=v${TfenvVersion} https://github.com/tfutils/tfenv.git /home/ec2-user/.tfenv'
             02_setup_tfenv:
               command: "echo 'export PATH=\"$HOME/.tfenv/bin:$PATH\"' >> /home/ec2-user/.bash_profile"
-            03_change_directory_owner:
+            03_setup_terraform_default_version:
+              command: !Sub "echo ${TerraformCliVersion} > /home/ec2-user/.tfenv/version"
+            04_change_directory_owner:
               command: 'chown -R ec2-user:ec2-user /home/ec2-user/{.tfenv,.bash_profile}'
-          files:
-            # Terraform version used if no .terraform-version file found in product tarball
-            "/home/ec2-user/.tfenv/version":
-              content: !Sub "${TerraformCliVersion}"
-              mode: "000644"
-              owner: "ec2-user"
-              group: "ec2-user"
 
         install_boto3:
           commands:

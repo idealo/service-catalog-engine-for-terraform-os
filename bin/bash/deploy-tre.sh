@@ -71,9 +71,10 @@ pip3 install wheel --upgrade
 # Locally install required versions of boto3/botocore, so sam bundles it with the rest of the state machine lambda builds.
 # We need to do this because the Lambda runtime environment lags on what version of boto it provides.
 # https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html
-pip3 install -r lambda-functions/state_machine_lambdas/requirements.txt \
--t lambda-functions/state_machine_lambdas \
---upgrade
+pip3 install \
+    -r lambda-functions/state_machine_lambdas/requirements.txt \
+    -t lambda-functions/state_machine_lambdas \
+    --upgrade
 
 GOOS=linux GOARCH=amd64 CGO_ENABLED=0 sam build
 
@@ -112,8 +113,12 @@ fi
 
 echo "Sending output of the sam deploy command to $SAM_DEPLOY_OUTPUT. This is done to check the results after the command has completed."
 echo "This may take a while. Please be patient."
-sam deploy --s3-bucket $BOOTSTRAP_BUCKET_NAME \
---stack-name $SAM_STACK_NAME --capabilities CAPABILITY_NAMED_IAM --region $AWS_REGION $SAM_DEPLOY_PARAMETER_OVERRIDES > $SAM_DEPLOY_OUTPUT 2>&1 || true
+sam deploy \
+    --s3-bucket $BOOTSTRAP_BUCKET_NAME \
+    --stack-name $SAM_STACK_NAME \
+    --capabilities CAPABILITY_NAMED_IAM \
+    --region $AWS_REGION $SAM_DEPLOY_PARAMETER_OVERRIDES \
+    > $SAM_DEPLOY_OUTPUT 2>&1 || true
 
 if [[ `grep "Successfully created/updated stack" $SAM_DEPLOY_OUTPUT` || `grep "Error: No changes to deploy" $SAM_DEPLOY_OUTPUT` ]]
 then
