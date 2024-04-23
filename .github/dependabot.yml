@@ -1,0 +1,41 @@
+# https://docs.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
+
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    target-branch: "dev"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "gh-action"
+    labels:
+      - "gh-action"
+      - "dependencies"
+    reviewers:
+      - "idealo/transit"
+  - package-ecosystem: "pip"
+    directory: "/"
+    target-branch: "dev"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "python"
+    labels:
+      - "python"
+      - "dependencies"
+    reviewers:
+      - "idealo/transit"
+  - package-ecosystem: "gomod"
+    directory: "/"
+    target-branch: "dev"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "go"
+    labels:
+      - "go"
+      - "dependencies"
+    reviewers:
+      - "idealo/transit"
+
