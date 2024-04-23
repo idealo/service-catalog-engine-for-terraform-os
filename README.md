@@ -20,7 +20,6 @@ The installation can be done from any Linux or Mac machine.
 1. Install AWS CLI https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
 1. Install Go https://go.dev/doc/install
 1. Install Python 3.9. Sam will require this exact version even if you have a newer version. https://www.python.org/downloads/release/python-3913/
-1. Install jq (https://jqlang.github.io/jq)
 
 # Automatically Install the Terraform Reference Engine
 
