@@ -16,7 +16,7 @@ class CommandManager:
         """
         self.__log = log
 
-    def run_command(self, command: list, log_stdout: bool = True):
+    def run_command(self, command: list, log_stdout: bool = False):
         """
         Parameters:
 
