@@ -1251,6 +1251,7 @@ Resources:
   ManageProvisionedProductStateMachineLogGroup:
     Type: AWS::Logs::LogGroup
     Properties:
+      LogGroupName: "/aws/vendedlogs/states/ManageProvisionedProductStateMachine"
       RetentionInDays: 3653
     UpdateReplacePolicy: Retain
     DeletionPolicy: Retain
@@ -1325,6 +1326,7 @@ Resources:
   TerminateProvisionedProductStateMachineLogGroup:
     Type: AWS::Logs::LogGroup
     Properties:
+      LogGroupName: "/aws/vendedlogs/states/TerminateProvisionedProductStateMachine"
       RetentionInDays: 3653
     UpdateReplacePolicy: Retain
     DeletionPolicy: Retain
