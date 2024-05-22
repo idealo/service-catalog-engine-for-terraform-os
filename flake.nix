@@ -18,6 +18,8 @@
               pip
             ]))
             go
+            bash # install script
+            jq # install script
           ];
         };
       }
